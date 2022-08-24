@@ -71,14 +71,14 @@ for i in range(0, len(Sentences)):
 
 wordfrequencydist = nltk.FreqDist(total_Words)
 mostCommon = wordfrequencydist.most_common(50)
-print(mostCommon)
+# print(mostCommon)
 required_Text = dataf['structured_resume'].values
 # required_Target = resumeData['Category'].values
 word_vectorizer = joblib.load('model1_vec.pkl')
 # word_vectorizer = TfidfVectorizer(sublinear_tf=True, stop_words='english', max_features=1500)
 required_Text = required_Text[~pd.isnull(required_Text)]
 WordFeatures = word_vectorizer.transform(required_Text)
-print(WordFeatures.shape)   
+# print(WordFeatures.shape)   
 
 clf = joblib.load('model.pkl')
 predicted = clf.predict(WordFeatures)
