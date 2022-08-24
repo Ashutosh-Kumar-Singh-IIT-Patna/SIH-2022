@@ -83,3 +83,6 @@ print(WordFeatures.shape)
 clf = joblib.load('model.pkl')
 predicted = clf.predict(WordFeatures)
 print(predicted)
+
+prob = clf.predict_proba(WordFeatures)
+print(prob)
