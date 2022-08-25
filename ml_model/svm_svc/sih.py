@@ -26,7 +26,37 @@ nltk.download('punkt')
 
 
 resumeData = pd.read_csv('UpdatedResumeDataSet.csv', encoding='utf-8')
-# resumeData.head()
+
+
+dict_job = {
+    "Data Science":  6,
+    "HR": 12,
+    "Advocate":  0,
+    "Arts":  1,
+    "Web Designing": 24,
+    "Mechanical Engineer": 16,
+    "Sales": 22,
+    "Health and fitness": 14,
+    "Civil Engineer":  5,
+    "Java Developer": 15,
+    "Business Analyst":  4,
+    "SAP Developer": 21,
+    "Automation Testing":  2,
+    "Electrical Engineering": 11,
+    "Operations Manager": 18,
+    "Python Developer": 20,
+    "DevOps Engineer":  8,
+    "Network Security Engineer": 17,
+    "PMO": 19,
+    "Database":  7,
+    "Hadoop": 13,
+    "ETL Developer": 10,
+    "DotNet Developer":  9,
+    "Blockchain":  3,
+    "Testing": 23
+
+}
+
 
 
 var_mod = ['Category']
@@ -83,6 +113,11 @@ WordFeatures = word_vectorizer.transform(required_Text)
 clf = joblib.load('model.pkl')
 predicted = clf.predict(WordFeatures)
 print(predicted)
+
+new_val = predicted
+result= [new_k for new_k in dict_job.items() if new_k[1] == new_val][0][0]
+print(result)
+
 
 prob = clf.predict_proba(WordFeatures)
 print(prob)
