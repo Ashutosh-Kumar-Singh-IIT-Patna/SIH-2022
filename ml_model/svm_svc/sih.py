@@ -20,13 +20,6 @@ import pandas as pd
 import os
 import seaborn as sns
 import warnings
-warnings.filterwarnings('ignore')
-nltk.download('stopwords')
-nltk.download('punkt')
-
-
-resumeData = pd.read_csv('UpdatedResumeDataSet.csv', encoding='utf-8')
-
 
 dict_job = {
     "Data Science":  6,
@@ -38,7 +31,7 @@ dict_job = {
     "Sales": 22,
     "Health and fitness": 14,
     "Civil Engineer":  5,
-    "Java Developer": 15,
+    "Software Engineer": 15,
     "Business Analyst":  4,
     "SAP Developer": 21,
     "Automation Testing":  2,
@@ -56,13 +49,6 @@ dict_job = {
     "Testing": 23
 
 }
-
-
-
-var_mod = ['Category']
-le = LabelEncoder()
-for i in var_mod:
-    resumeData[i] = le.fit_transform(resumeData[i])
 
 
 inp_data = input("Enter resume: ")
@@ -85,7 +71,6 @@ def clean_resume(Text):
 
 dataf['structured_resume'] = dataf.Resume.apply(lambda x: clean_resume(x))
 
-# clean_input = inp_data(lambda x: clean_input(x))
 Set_Of_StopWords = set(stopwords.words('english')+['``', "''"])
 total_Words = []
 Sentences = dataf['Resume'].values
@@ -99,24 +84,19 @@ for i in range(0, len(Sentences)):
             total_Words.append(word)
 
 
-wordfrequencydist = nltk.FreqDist(total_Words)
-mostCommon = wordfrequencydist.most_common(50)
-# print(mostCommon)
 required_Text = dataf['structured_resume'].values
-# required_Target = resumeData['Category'].values
 word_vectorizer = joblib.load('model1_vec.pkl')
-# word_vectorizer = TfidfVectorizer(sublinear_tf=True, stop_words='english', max_features=1500)
 required_Text = required_Text[~pd.isnull(required_Text)]
 WordFeatures = word_vectorizer.transform(required_Text)
-# print(WordFeatures.shape)   
 
 clf = joblib.load('model.pkl')
 predicted = clf.predict(WordFeatures)
-print(predicted)
 
 new_val = predicted
 result= [new_k for new_k in dict_job.items() if new_k[1] == new_val][0][0]
-print(result)
+print("------------------------------------------------------------------------")
+print("                    ",result,"(Best option)")
+print("------------------------------------------------------------------------")
 
 
 prob = clf.predict_proba(WordFeatures)

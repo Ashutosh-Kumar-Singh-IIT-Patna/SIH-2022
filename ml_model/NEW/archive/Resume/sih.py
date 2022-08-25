@@ -20,43 +20,12 @@ import pandas as pd
 import os
 import seaborn as sns
 import warnings
-warnings.filterwarnings('ignore')
-nltk.download('stopwords')
-nltk.download('punkt')
 
 
 resumeData = pd.read_csv('UpdatedResumeDataSet.csv', encoding='utf-8')
 
-
-dict_job = {
-    "Data Science":  6,
-    "HR": 12,
-    "Advocate":  0,
-    "Arts":  1,
-    "Web Designing": 24,
-    "Mechanical Engineer": 16,
-    "Sales": 22,
-    "Health and fitness": 14,
-    "Civil Engineer":  5,
-    "Java Developer": 15,
-    "Business Analyst":  4,
-    "SAP Developer": 21,
-    "Automation Testing":  2,
-    "Electrical Engineering": 11,
-    "Operations Manager": 18,
-    "Python Developer": 20,
-    "DevOps Engineer":  8,
-    "Network Security Engineer": 17,
-    "PMO": 19,
-    "Database":  7,
-    "Hadoop": 13,
-    "ETL Developer": 10,
-    "DotNet Developer":  9,
-    "Blockchain":  3,
-    "Testing": 23
-
-}
-
+dict_job = {'HR': 30, 'DESIGNER': 19, 'INFORMATION-TECHNOLOGY': 33, 'TEACHER': 44, 'ADVOCATE': 1, 'nan': 47, 'BUSINESS-DEVELOPMENT': 12, 'HEALTHCARE': 29, 'FITNESS': 28, 'AGRICULTURE': 2, 'BPO': 11, 'SALES': 41, 'CONSULTANT': 17, 'DIGITAL-MEDIA': 20, 'AUTOMOBILE': 5, 'CHEF': 15, 'FINANCE': 27, 'APPAREL': 3, 'ACCOUNTANT': 0, 'CONSTRUCTION': 16, 'PUBLIC-RELATIONS': 39, 'BANKING': 10, 'ARTS': 4, 'AVIATION': 6, 'Data Science': 21, 'Advocate': 7, 'Arts': 8,
+            'Web Designing': 46, 'Mechanical Engineer': 35, 'Sales': 43, 'Health and fitness': 32, 'Civil Engineer': 18, 'Software Engineer 1': 34, 'Business Analyst': 14, 'SAP Developer': 42, 'Automation Testing': 9, 'Electrical Engineering': 26, 'Operations Manager': 37, 'Software Engineer': 40, 'Software Engineer': 23, 'Network Security Engineer': 36, 'PMO': 38, 'Database': 22, 'Hadoop': 31, 'ETL Developer': 25, 'DotNet Developer': 24, 'Blockchain': 13, 'Testing': 45}
 
 
 var_mod = ['Category']
@@ -85,7 +54,6 @@ def clean_resume(Text):
 
 dataf['structured_resume'] = dataf.Resume.apply(lambda x: clean_resume(x))
 
-# clean_input = inp_data(lambda x: clean_input(x))
 Set_Of_StopWords = set(stopwords.words('english')+['``', "''"])
 total_Words = []
 Sentences = dataf['Resume'].values
@@ -101,23 +69,19 @@ for i in range(0, len(Sentences)):
 
 wordfrequencydist = nltk.FreqDist(total_Words)
 mostCommon = wordfrequencydist.most_common(50)
-# print(mostCommon)
 required_Text = dataf['structured_resume'].values
-# required_Target = resumeData['Category'].values
 word_vectorizer = joblib.load('model1_vec.pkl')
-# word_vectorizer = TfidfVectorizer(sublinear_tf=True, stop_words='english', max_features=1500)
 required_Text = required_Text[~pd.isnull(required_Text)]
 WordFeatures = word_vectorizer.transform(required_Text)
-# print(WordFeatures.shape)   
 
 clf = joblib.load('model.pkl')
 predicted = clf.predict(WordFeatures)
 print(predicted)
-
-new_val = predicted
+new_val = predicted[0]
 result= [new_k for new_k in dict_job.items() if new_k[1] == new_val][0][0]
-print(result)
-
+print("------------------------------------------------------------------------")
+print("                    ",result,"(Best option)")
+print("------------------------------------------------------------------------")
 
 prob = clf.predict_proba(WordFeatures)
 print(prob)
