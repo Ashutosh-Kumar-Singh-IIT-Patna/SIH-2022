@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predict Career</title>
+    <title>ProfessionPro</title>
     <link rel="stylesheet" href="style.css">
     <style>
         *{
@@ -21,8 +21,8 @@
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
         .finall{
-            width: 52%;
-            height: 210vh;
+            width: 40%;
+            height: 70vh;
             text-align: center;
             background-color:white;
             margin-top:70px;
@@ -74,21 +74,18 @@
             /* font-size: 30px; */
             text-align: center;
         }
-        form textarea{
+        form input{
             width: 100%;
+            text-align: center;
             background-color:floralwhite;
             border: 1px solid ;
-            padding: 5px;
+            padding: 6px;
             border-radius: 8px;
             margin-top: 14px;
-            scale:1.8 1.35;
-            font-family:  Georgia, 'Times New Roman', Times, serif;;
+            scale:1.2;
         }
         .username,.password{
-            font-size: 10px;
-            font-family: cursive;
-            margin-bottom: 15px;
-            margin-top: 20px;
+            font-size: 13px;
         }
         .submitlogin a{
             text-decoration: none;
@@ -130,15 +127,6 @@
             align-items: center;
             text-align: center;
         }
-        .register{
-            padding-top: 20px;
-            padding-bottom: 15px;
-            text-decoration: underline;
-            font-size: 40px;
-            color:rgb(23, 6, 75);
-            font-style: bold;
-            font-family:Georgia, 'Times New Roman', Times, serif;
-        }
     </style>
 </head>
 <body>
@@ -146,11 +134,9 @@
     <div class="team-section">
     <div id="main">
         <div>
-            <div class="elem"><a href="home.html" class="hiren">Home</a></div>
-            <div class="elem"><a href="aboutusafterlogin.html" class="hiren">About Us</a></div>
-            <div class="elem"><a href="contactusafterlogin.html" class="hiren">Contact Us</a></div>
-            <div class="elem"><a href="account.html" class="hiren">Account</a></div>
-            <div class="elem"><a href="index.html" class="hiren">Logout</a></div>
+            <div class="elem"><a href="index.html" class="hiren">Home</a></div>
+            <div class="elem"><a href="aboutusbeforelogin.html" class="hiren">About Us</a></div>
+            <div class="elem"><a href="contactusbeforelogin.html" class="hiren">Contact Us</a></div>
         </div>
     </div>
     <div class="professionpro">
@@ -159,54 +145,31 @@
     
     <div class="abcad">
     <div class="finall">
+        <div id="dont" class="all">
+           <h1> <br>Don't have an Account ?</h1>
+            <div id="regi" >
+                <!-- <br> -->
+                <a href="register.html">Register</a>
+            </div>
+        </div>
+        <div id="or" class="all">--------- OR ---------</div>
         <div class="login">
             <form>
-                <div class="register">Predict your Career</div>
-                <!-- <br> -->
                 <div class="username all" > 
-                    <h1>Highest Educational Qualification : </h1>
+                    <h1> Username/Email: </h1>
                 </div>
-                <!-- <input type="text" size="70" required> -->
-                <textarea rows="1" columns="15"></textarea>
+                <input type="text" placeholder="Enter Username or Email Id" size="30" required>
                 <br><br>
-                <div class="username all" > 
-                    <h1>Current Employement Status :</h1>
+                <div class="password all">
+                  <h1>  Password: </h1>
                 </div>
-                <!-- <input type="text" size="70" required> -->
-                <textarea rows="1" columns="15"></textarea>
+                <input type="password" placeholder="Enter Password" required>
                 <br><br>
-                <div class="username all" > 
-                    <h1>Skills :</h1>
-                </div><br>
-                <!-- <input type="text" size="70" required> -->
-                <textarea rows="5" columns="15"></textarea>
-                <br><br>
-                <div class="username all" > 
-                    <h1>Hobbies/Interests :</h1>
-                </div><br>
-                <!-- <input type="text" size="70" required> -->
-                <textarea rows="5" columns="15"></textarea>
-                <br><br>
-                <div class="username all" > 
-                    <h1>Courses Done :</h1>
-                </div><br>
-                <!-- <input type="text" size="70" required> -->
-                <textarea rows="5" columns="15"></textarea>
-                <br><br>
-                <div class="username all" > 
-                    <h1>Extracurricular Activities :</h1>
-                </div><br>
-                <!-- <input type="text" size="70" required> -->
-                <textarea rows="5" columns="15"></textarea>
-                <br><br>
-                <div class="username all" > 
-                    <h1>Achievements :</h1>
-                </div><br>
-                <!-- <input type="text" size="70" required> -->
-                <textarea rows="5" columns="15"></textarea>
-                <br><br><br>
                 <div class="submitlogin all" >
-                    <a href="output.html">Predict</a>
+                    <a href="home.html">Login</a>
+                </div>
+                <div class="dfdf">
+                    <a href="forgotpassword.html">Forgot Password ?</a>
                 </div>
             </form>
         </div>
@@ -216,17 +179,5 @@
 <script src="particles.js"></script>
   <script src="app.js"></script>
   <script>requestAnimationFrame(update);</script>
-  <script>
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-    var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("main").style.top = "0";
-      } else {
-        document.getElementById("main").style.top = "-50px";
-      }
-      prevScrollpos = currentScrollPos;
-    }
-    </script>
 </body>
 </html>
